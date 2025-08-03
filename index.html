@@ -459,38 +459,47 @@
             initDeviceExplorer();
         });
 
-        const apiKey = "AIzaSyAI2YzNBjTbvjayy6bOxdYZxxz3CY7cEUY"; 
+      //  const apiKey = "AIzaSyAI2YzNBjTbvjayy6bOxdYZxxz3CY7cEUY"; 
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
         async function callGeminiAPI(prompt, loaderElement, resultElement, isCode = false, wrapperElement = null) {
-            loaderElement.style.display = 'block';
-            if (wrapperElement) wrapperElement.style.display = 'none';
-            if(resultElement) resultElement.innerHTML = '';
-            
-            const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-            try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const result = await response.json();
-                if (result.candidates?.[0]?.content?.parts?.[0]) {
-                    let text = result.candidates[0].content.parts[0].text;
-                    if (isCode) {
-                        text = text.replace(/^```(cpp|c\+\+|arduino)?\s*/, '').replace(/```\s*$/, '');
-                        resultElement.textContent = text.trim();
-                        if (wrapperElement) wrapperElement.style.display = 'block';
-                    } else {
-                        typewriterEffect(resultElement, text);
-                    }
-                } else {
-                    typewriterEffect(resultElement, 'ขออภัย ไม่สามารถสร้างคำตอบได้ในขณะนี้');
-                }
-            } catch (error) {
-                console.error('API call failed:', error);
-                typewriterEffect(resultElement, 'เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI');
-            } finally {
-                loaderElement.style.display = 'none';
-            }
+    loaderElement.style.display = 'block';
+    if (wrapperElement) wrapperElement.style.display = 'none';
+    if(resultElement) resultElement.innerHTML = '';
+
+    try {
+        // เปลี่ยน URL ไปยังฟังก์ชันของเรา
+        const response = await fetch('/.netlify/functions/ask-gemini', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            // ส่ง prompt ไปใน body
+            body: JSON.stringify({ prompt: prompt }) 
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const result = await response.json();
+        // รับคำตอบจาก 'reply' ที่ฟังก์ชันส่งกลับมา
+        const text = result.reply; 
+
+        // ส่วนที่เหลือของโค้ดเหมือนเดิม
+        if (isCode) {
+            const codeText = text.replace(/^```(cpp|c\+\+|arduino)?\s*/, '').replace(/```\s*$/, '');
+            resultElement.textContent = codeText.trim();
+            if (wrapperElement) wrapperElement.style.display = 'block';
+        } else {
+            typewriterEffect(resultElement, text);
+        }
+
+    } catch (error) {
+        console.error('API call failed:', error);
+        typewriterEffect(resultElement, 'เกิดข้อผิดพลาดในการเชื่อมต่อ');
+    } finally {
+        loaderElement.style.display = 'none';
+    }
+}
 
         function typewriterEffect(element, text, speed = 20) {
             if (typewriterInterval) clearInterval(typewriterInterval);
@@ -642,3 +651,4 @@
     </script>
 </body>
 </html>
+
