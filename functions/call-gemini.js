@@ -10,37 +10,41 @@ exports.handler = async (event) => {
   }
 
   try {
-    // 1. ดึง prompt ที่ส่งมาจากหน้าเว็บ
     const { prompt } = JSON.parse(event.body);
-
-    // 2. ดึง API Key จากที่เก็บลับของ Netlify (ปลอดภัย)
     const apiKey = process.env.GEMINI_API_KEY;
-    
+
     if (!apiKey) {
-      throw new Error("API Key is not set in Netlify environment.");
+      // ใช้ console.error เพื่อให้แสดงใน Log ชัดเจน
+      console.error("Function Error: GEMINI_API_KEY is not set.");
+      throw new Error("Server configuration error: API Key not found.");
     }
 
     const modelName = "gemini-1.5-flash-latest"; 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
-
-    // 3. ยิง request ไปยัง Google AI API จากเซิร์ฟเวอร์ของ Netlify
-    const response = await fetch(apiUrl, {
+    
+    const googleResponse = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }] }),
     });
 
-    if (!response.ok) {
-      const errorBody = await response.json();
-      return { statusCode: response.status, headers, body: JSON.stringify({ error: errorBody.error.message }) };
+    // ถ้า Google API ตอบกลับมาโดยที่ "ไม่ใช่" JSON (เช่น หน้า error HTML)
+    const contentType = googleResponse.headers.get("content-type");
+    if (!googleResponse.ok || !contentType || !contentType.includes("application/json")) {
+      const errorText = await googleResponse.text();
+      console.error('Google API Error:', errorText);
+      throw new Error(`Google API returned a non-JSON response. Status: ${googleResponse.status}`);
     }
 
-    const data = await response.json();
-
-    // 4. ส่งผลลัพธ์กลับไปให้หน้าเว็บ
+    const data = await googleResponse.json();
     return { statusCode: 200, headers, body: JSON.stringify(data) };
 
   } catch (error) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
+    console.error('Caught Function Error:', error.message);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: error.message }),
+    };
   }
 };
