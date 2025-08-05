@@ -448,14 +448,42 @@
         let growthChart, marketShareChart;
         let typewriterInterval;
 
-        const chartColors = {
-            font: '#111827',
-            grid: 'rgba(55, 65, 81, 0.1)',
-            line: '#2563eb',
-            lineBg: 'rgba(59, 130, 246, 0.1)',
-            doughnutBg: ['#1d4ed8', '#2563eb', '#60a5fa', '#93c5fd', '#bfdbfe'],
-            doughnutBorder: '#ffffff'
-        };
+        // --- ภายใน <script> ---
+
+const chartColors = {
+    light: {
+        font: '#111827',
+        grid: 'rgba(55, 65, 81, 0.1)',
+        line: '#2563eb',
+        lineBg: 'rgba(59, 130, 246, 0.1)',
+        // --- ส่วนที่แก้ไข ---
+        // ของเดิม: doughnutBg: ['#1d4ed8', '#2563eb', '#60a5fa', '#93c5fd', '#bfdbfe'],
+        doughnutBg: [ // <-- ชุดสีใหม่
+            '#3b82f6', // สีน้ำเงิน (อุตสาหกรรม)
+            '#10b981', // สีเขียว (ผู้บริโภค)
+            '#ef4444', // สีแดง (การแพทย์)
+            '#8b5cf6', // สีม่วง (เมืองอัจฉริยะ)
+            '#f59e0b'  // สีส้ม (ยานยนต์)
+        ],
+        doughnutBorder: '#ffffff'
+    },
+    dark: {
+        font: '#d1d5db',
+        grid: 'rgba(255, 255, 255, 0.1)',
+        line: '#60a5fa',
+        lineBg: 'rgba(96, 165, 250, 0.1)',
+        // --- ส่วนที่แก้ไข ---
+        // ของเดิม: doughnutBg: ['#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe'],
+        doughnutBg: [ // <-- ชุดสีใหม่สำหรับ Dark Mode
+            '#60a5fa', // สีน้ำเงิน
+            '#34d399', // สีเขียว
+            '#f87171', // สีแดง
+            '#a78bfa', // สีม่วง
+            '#fbbf24'  // สีส้ม
+        ],
+        doughnutBorder: '#1f2937'
+    }
+};
 
         const iotDevices = [
             { name: "Arduino UNO R3", image: "https://placehold.co/400x300/e0e0e0/333?text=Arduino+UNO", description: "บอร์ดไมโครคอนโทรลเลอร์ยอดนิยมสำหรับผู้เริ่มต้น เป็นหัวใจหลักของโปรเจกต์ IoT จำนวนมาก ใช้ในการอ่านค่าจากเซ็นเซอร์และควบคุมอุปกรณ์ต่างๆ", datasheet: "https://docs.arduino.cc/hardware/uno-rev3" },
