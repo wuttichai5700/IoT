@@ -347,81 +347,81 @@
             <section class="card rounded-xl shadow-md p-6 md:p-8 fade-in-section bg-blue-50 border-blue-200">
                  <h2 class="text-3xl font-bold text-gray-900 text-center mb-8">เครื่องมือ AI อัจฉริยะ</h2>
                  <div class="space-y-12">
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                            สำรวจไอเดีย IoT ด้วย AI
-                        </h3>
-                        <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">เลือกหมวดหมู่ที่คุณสนใจ แล้วให้ Gemini ช่วยสร้างสรรค์กรณีการใช้งาน (Use Case) ใหม่ๆ</p>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-                            <select id="useCaseSector" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-auto p-2.5">
-                                <option value="Healthcare">การแพทย์</option>
-                                <option value="Agriculture">เกษตรกรรม</option>
-                                <option value="Smart Home">บ้านอัจฉริยะ</option>
-                                <option value="Smart City">เมืองอัจฉริยะ</option>
-                                <option value="Retail">ค้าปลีก</option>
-                            </select>
-                            <button id="generateIdeaBtn" class="w-full sm:w-auto text-white bg-purple-600 hover:bg-purple-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">✨ สร้างไอเดีย</button>
-                        </div>
-                        <div id="ideaLoader" class="hidden"><div class="loader"></div></div>
-                        <div id="ideaResult" class="mt-4 p-5 bg-white border-l-4 border-purple-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-                            เครื่องมือสร้างโค้ด Arduino ด้วย AI
-                        </h3>
-                        <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">อธิบายสิ่งที่คุณต้องการให้บอร์ด Arduino ทำ แล้ว AI จะช่วยสร้างโค้ดเบื้องต้นให้คุณ สามารถคัดลอกไปใช้งานได้ทันที</p>
-                        <div class="mb-4">
-                            <label for="arduinoPrompt" class="block mb-2 text-sm font-medium text-gray-900">อธิบายโปรเจกต์ของคุณที่นี่:</label>
-                            <textarea id="arduinoPrompt" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="เช่น 'โค้ดสำหรับเปิด/ปิดไฟ LED ที่ขา 13 ทุกๆ 1 วินาที'"></textarea>
-                        </div>
-                        <div class="text-center mb-6">
-                            <button id="generateCodeBtn" class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-3 text-center action-button">🚀 สร้างโค้ด</button>
-                        </div>
-                        <div id="codeLoader" class="hidden"><div class="loader"></div></div>
-                        <div id="codeResultWrapper" class="hidden">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-lg font-semibold text-gray-800">โค้ด Arduino ที่สร้างขึ้น:</h3>
-                                <button id="copyCodeBtn" class="text-sm bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded-lg flex items-center action-button">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                    <span id="copyBtnText">คัดลอกโค้ด</span>
-                                </button>
-                            </div>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code id="codeResult"></code></pre>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3h3m-3 4h3m-3 4h3m-3 4h3" />
-                            </svg>
-                            ข่าวสารและเทรนด์ล่าสุด
-                        </h3>
-                        <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">อัปเดตความเคลื่อนไหวล่าสุดในโลกของ IoT ด้วยข้อมูลสรุปจาก AI</p>
-                        <div class="text-center mb-6">
-                            <button id="getTrendsBtn" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">🚀 อัปเดตเทรนด์</button>
-                        </div>
-                        <div id="trendsLoader" class="hidden"><div class="loader"></div></div>
-                        <div id="trendsResult" class="mt-4 p-5 bg-white border-l-4 border-green-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
-                    </div>
-
-                    <div>
+                     <div>
                          <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            ถาม-ตอบเรื่อง IoT กับ AI
-                        </h3>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-6">
-                            <input type="text" id="questionInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="พิมพ์คำถามของคุณที่นี่...">
-                            <button id="askQuestionBtn" class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">✨ ส่งคำถาม</button>
-                        </div>
-                        <div id="qaLoader" class="hidden"><div class="loader"></div></div>
-                        <div id="qaResult" class="mt-4 p-5 bg-white border-l-4 border-blue-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
-                    </div>
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                             สำรวจไอเดีย IoT ด้วย AI
+                         </h3>
+                         <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">เลือกหมวดหมู่ที่คุณสนใจ แล้วให้ Gemini ช่วยสร้างสรรค์กรณีการใช้งาน (Use Case) ใหม่ๆ</p>
+                         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                             <select id="useCaseSector" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-auto p-2.5">
+                                 <option value="Healthcare">การแพทย์</option>
+                                 <option value="Agriculture">เกษตรกรรม</option>
+                                 <option value="Smart Home">บ้านอัจฉริยะ</option>
+                                 <option value="Smart City">เมืองอัจฉริยะ</option>
+                                 <option value="Retail">ค้าปลีก</option>
+                             </select>
+                             <button id="generateIdeaBtn" class="w-full sm:w-auto text-white bg-purple-600 hover:bg-purple-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">✨ สร้างไอเดีย</button>
+                         </div>
+                         <div id="ideaLoader" class="hidden"><div class="loader"></div></div>
+                         <div id="ideaResult" class="mt-4 p-5 bg-white border-l-4 border-purple-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
+                     </div>
+
+                     <div>
+                         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                             เครื่องมือสร้างโค้ด Arduino ด้วย AI
+                         </h3>
+                         <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">อธิบายสิ่งที่คุณต้องการให้บอร์ด Arduino ทำ แล้ว AI จะช่วยสร้างโค้ดเบื้องต้นให้คุณ สามารถคัดลอกไปใช้งานได้ทันที</p>
+                         <div class="mb-4">
+                             <label for="arduinoPrompt" class="block mb-2 text-sm font-medium text-gray-900">อธิบายโปรเจกต์ของคุณที่นี่:</label>
+                             <textarea id="arduinoPrompt" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="เช่น 'โค้ดสำหรับเปิด/ปิดไฟ LED ที่ขา 13 ทุกๆ 1 วินาที'"></textarea>
+                         </div>
+                         <div class="text-center mb-6">
+                             <button id="generateCodeBtn" class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-3 text-center action-button">🚀 สร้างโค้ด</button>
+                         </div>
+                         <div id="codeLoader" class="hidden"><div class="loader"></div></div>
+                         <div id="codeResultWrapper" class="hidden">
+                             <div class="flex justify-between items-center mb-2">
+                                 <h3 class="text-lg font-semibold text-gray-800">โค้ด Arduino ที่สร้างขึ้น:</h3>
+                                 <button id="copyCodeBtn" class="text-sm bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded-lg flex items-center action-button">
+                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                     <span id="copyBtnText">คัดลอกโค้ด</span>
+                                 </button>
+                             </div>
+                             <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code id="codeResult"></code></pre>
+                         </div>
+                     </div>
+
+                     <div>
+                         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3h3m-3 4h3m-3 4h3m-3 4h3" />
+                             </svg>
+                             ข่าวสารและเทรนด์ล่าสุด
+                         </h3>
+                         <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">อัปเดตความเคลื่อนไหวล่าสุดในโลกของ IoT ด้วยข้อมูลสรุปจาก AI</p>
+                         <div class="text-center mb-6">
+                             <button id="getTrendsBtn" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">🚀 อัปเดตเทรนด์</button>
+                         </div>
+                         <div id="trendsLoader" class="hidden"><div class="loader"></div></div>
+                         <div id="trendsResult" class="mt-4 p-5 bg-white border-l-4 border-green-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
+                     </div>
+
+                      <div>
+                           <h3 class="text-2xl font-bold text-gray-800 text-center mb-2 flex items-center justify-center gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                             </svg>
+                             ถาม-ตอบเรื่อง IoT กับ AI
+                         </h3>
+                         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-6">
+                             <input type="text" id="questionInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="พิมพ์คำถามของคุณที่นี่...">
+                             <button id="askQuestionBtn" class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">✨ ส่งคำถาม</button>
+                         </div>
+                         <div id="qaLoader" class="hidden"><div class="loader"></div></div>
+                         <div id="qaResult" class="mt-4 p-5 bg-white border-l-4 border-blue-500 rounded-r-lg min-h-[100px] text-gray-600 whitespace-pre-wrap" aria-live="polite"></div>
+                     </div>
                  </div>
             </section>
         </main>
@@ -439,7 +439,7 @@
                     <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
                 </div>
                 <div id="modal-body" class="mt-4">
-                    </div>
+                 </div>
             </div>
         </div>
     </div>
@@ -448,42 +448,16 @@
         let growthChart, marketShareChart;
         let typewriterInterval;
 
-        // --- ภายใน <script> ---
-
-const chartColors = {
-    light: {
-        font: '#111827',
-        grid: 'rgba(55, 65, 81, 0.1)',
-        line: '#2563eb',
-        lineBg: 'rgba(59, 130, 246, 0.1)',
-        // --- ส่วนที่แก้ไข ---
-        // ของเดิม: doughnutBg: ['#1d4ed8', '#2563eb', '#60a5fa', '#93c5fd', '#bfdbfe'],
-        doughnutBg: [ // <-- ชุดสีใหม่
-            '#3b82f6', // สีน้ำเงิน (อุตสาหกรรม)
-            '#10b981', // สีเขียว (ผู้บริโภค)
-            '#ef4444', // สีแดง (การแพทย์)
-            '#8b5cf6', // สีม่วง (เมืองอัจฉริยะ)
-            '#f59e0b'  // สีส้ม (ยานยนต์)
-        ],
-        doughnutBorder: '#ffffff'
-    },
-    dark: {
-        font: '#d1d5db',
-        grid: 'rgba(255, 255, 255, 0.1)',
-        line: '#60a5fa',
-        lineBg: 'rgba(96, 165, 250, 0.1)',
-        // --- ส่วนที่แก้ไข ---
-        // ของเดิม: doughnutBg: ['#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe'],
-        doughnutBg: [ // <-- ชุดสีใหม่สำหรับ Dark Mode
-            '#60a5fa', // สีน้ำเงิน
-            '#34d399', // สีเขียว
-            '#f87171', // สีแดง
-            '#a78bfa', // สีม่วง
-            '#fbbf24'  // สีส้ม
-        ],
-        doughnutBorder: '#1f2937'
-    }
-};
+        const chartColors = {
+            light: {
+                font: '#111827',
+                grid: 'rgba(55, 65, 81, 0.1)',
+                line: '#2563eb',
+                lineBg: 'rgba(59, 130, 246, 0.1)',
+                doughnutBg: [ '#3b82f6', '#10b981', '#ef4444', '#8b5cf6', '#f59e0b' ],
+                doughnutBorder: '#ffffff'
+            }
+        };
 
         const iotDevices = [
             { name: "Arduino UNO R3", image: "https://placehold.co/400x300/e0e0e0/333?text=Arduino+UNO", description: "บอร์ดไมโครคอนโทรลเลอร์ยอดนิยมสำหรับผู้เริ่มต้น เป็นหัวใจหลักของโปรเจกต์ IoT จำนวนมาก ใช้ในการอ่านค่าจากเซ็นเซอร์และควบคุมอุปกรณ์ต่างๆ", datasheet: "https://docs.arduino.cc/hardware/uno-rev3" },
@@ -497,12 +471,10 @@ const chartColors = {
         ];
 
         document.addEventListener("DOMContentLoaded", () => {
-            particlesJS('particles-js', {
-                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#3b82f6" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": false }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out" } },
-                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 150, "duration": 0.4 }, "push": { "particles_nb": 4 } } },
-                "retina_detect": true
-            });
+            // --- ParticlesJS Initialization ---
+            particlesJS('particles-js', { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#3b82f6" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": false }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out" } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 150, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true });
 
+            // --- Intersection Observer for Animations ---
             const sections = document.querySelectorAll('.fade-in-section');
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -520,243 +492,240 @@ const chartColors = {
             }, { threshold: 0.1 });
             sections.forEach(section => { observer.observe(section); });
 
+            // --- Chart.js Initialization ---
             const growthChartCtx = document.getElementById('growthChart').getContext('2d');
-            growthChart = new Chart(growthChartCtx, {
-                type: 'line', data: { labels: ['2020', '2022', '2024', '2025', '2026', '2028', '2030'], datasets: [{ label: 'จำนวนอุปกรณ์ (พันล้านชิ้น)', data: [11.3, 14.4, 20.1, 27.1, 30.9, 36.2, 41.6], backgroundColor: chartColors.lineBg, borderColor: chartColors.line, pointBackgroundColor: '#ffffff', pointBorderColor: chartColors.line, tension: 0.4, fill: true, }] },
-                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { color: chartColors.font }, grid: { color: chartColors.grid } }, x: { ticks: { color: chartColors.font }, grid: { color: chartColors.grid } } }, plugins: { legend: { display: false } } }
-            });
+            growthChart = new Chart(growthChartCtx, { type: 'line', data: { labels: ['2020', '2022', '2024', '2025', '2026', '2028', '2030'], datasets: [{ label: 'จำนวนอุปกรณ์ (พันล้านชิ้น)', data: [11.3, 14.4, 20.1, 27.1, 30.9, 36.2, 41.6], backgroundColor: chartColors.light.lineBg, borderColor: chartColors.light.line, pointBackgroundColor: '#ffffff', pointBorderColor: chartColors.light.line, tension: 0.4, fill: true, }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { color: chartColors.light.font }, grid: { color: chartColors.light.grid } }, x: { ticks: { color: chartColors.light.font }, grid: { color: chartColors.light.grid } } }, plugins: { legend: { labels: { color: chartColors.light.font } } } } });
+            const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+            marketShareChart = new Chart(marketShareCtx, { type: 'doughnut', data: { labels: ['อุตสาหกรรม/การผลิต', 'ผู้บริโภค/บ้าน', 'การแพทย์', 'เมืองอัจฉริยะ', 'ยานยนต์'], datasets: [{ data: [35, 25, 15, 15, 10], backgroundColor: chartColors.light.doughnutBg, borderColor: chartColors.light.doughnutBorder, borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: chartColors.light.font, padding: 20 } } } } });
 
-            const marketShareChartCtx = document.getElementById('marketShareChart').getContext('2d');
-            marketShareChart = new Chart(marketShareChartCtx, {
-                type: 'doughnut', data: { labels: ['อุตสาหกรรม', 'ผู้บริโภค', 'การแพทย์', 'เมืองอัจฉริยะ', 'ยานยนต์'], datasets: [{ label: 'สัดส่วนตลาด', data: [35, 30, 15, 12, 8], backgroundColor: chartColors.doughnutBg, borderColor: chartColors.doughnutBorder, borderWidth: 4, hoverOffset: 20 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: chartColors.font } } } }
-            });
-
-            initDeviceExplorer();
+            // --- Device Search Functionality ---
+            setupDeviceSearch();
         });
-        
-        const functionUrl = "/.netlify/functions/call-gemini";
 
-        async function callGeminiAPI(prompt, loaderElement, resultElement, isCode = false, wrapperElement = null) {
-            loaderElement.style.display = 'block';
-            if (wrapperElement) wrapperElement.style.display = 'none';
-            if(resultElement) resultElement.innerHTML = '';
+        // =====================================================================
+        // ========== ส่วนของโค้ด AI ทั้งหมด เริ่มต้นที่นี่ ==========
+        // =====================================================================
+
+        /**
+         * ฟังก์ชันหลักสำหรับเรียกใช้งาน Google AI (Gemini)
+         * @param {string} promptText - คำสั่งหรือคำถามที่ต้องการส่งให้ AI
+         * @returns {Promise<string>} - คำตอบที่ได้จาก AI
+         */
+        async function callGeminiAPI(promptText) {
+            // !!! สำคัญมาก: กรุณาใส่ API Key ของคุณที่นี่ !!!
+            const API_KEY = 'YOUR_API_KEY'; 
             
+            // เราใช้โมเดล 'gemini-1.5-flash' ซึ่งเป็นชื่อที่ถูกต้อง
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
             try {
-                const response = await fetch(functionUrl, { 
+                const response = await fetch(API_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }, 
-                    body: JSON.stringify({ prompt: prompt })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: promptText }] }]
+                    })
                 });
-                
+
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.error || 'Error calling Netlify function');
+                    console.error("API Error Response:", errorData);
+                    throw new Error(errorData.error.message || "เกิดข้อผิดพลาดจาก API");
                 }
 
-                const result = await response.json();
-
-                if (result.candidates?.[0]?.content?.parts?.[0]) {
-                    let text = result.candidates[0].content.parts[0].text;
-                    if (isCode) {
-                        text = text.replace(/^```(cpp|c\+\+|arduino)?\s*/, '').replace(/```\s*$/, '');
-                        resultElement.textContent = text.trim();
-                        if (wrapperElement) wrapperElement.style.display = 'block';
-                    } else {
-                        // For markdown-formatted text, we can use a library or a simple conversion
-                        // Here, we just replace some markdown for simple HTML display
-                        let htmlText = text
-                            .replace(/### (.*)/g, '<h3 class="text-lg font-semibold mt-2">$1</h3>')
-                            .replace(/## (.*)/g, '<h2 class="text-xl font-bold mt-3">$1</h2>')
-                            .replace(/# (.*)/g, '<h1 class="text-2xl font-bold mt-4">$1</h1>')
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\* (.*)/g, '<li class="ml-4 list-disc">$1</li>');
-                        typewriterEffect(resultElement, htmlText, 15);
-                    }
+                const data = await response.json();
+                
+                // ตรวจสอบว่ามี candidates และ content parts หรือไม่
+                if (data.candidates && data.candidates.length > 0 && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
+                    return data.candidates[0].content.parts[0].text;
                 } else {
-                    console.error('Invalid response structure:', result);
-                    let errorMessage = 'ขออภัย ไม่สามารถสร้างคำตอบได้ในขณะนี้';
-                    if (result.promptFeedback && result.promptFeedback.blockReason) {
-                        errorMessage += ` (เหตุผล: ${result.promptFeedback.blockReason})`;
-                    }
-                    typewriterEffect(resultElement, errorMessage);
+                    return "AI ไม่ได้ส่งคำตอบกลับมาในรูปแบบที่คาดหวัง";
                 }
+
             } catch (error) {
-                console.error('API call failed:', error);
-                typewriterEffect(resultElement, `เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI: ${error.message}. กรุณาลองใหม่อีกครั้ง`);
-            } finally {
-                loaderElement.style.display = 'none';
+                console.error("เกิดข้อผิดพลาดในการเรียก Gemini API:", error);
+                return `เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI: ${error.message}`;
             }
         }
+        
+        // --- 1. จัดการการสร้างไอเดีย (Generate Idea) ---
+        const generateIdeaBtn = document.getElementById('generateIdeaBtn');
+        const ideaResult = document.getElementById('ideaResult');
+        const ideaLoader = document.getElementById('ideaLoader');
+        const useCaseSector = document.getElementById('useCaseSector');
 
-        function typewriterEffect(element, text, speed = 20) {
-            if (typewriterInterval) clearInterval(typewriterInterval);
-            element.innerHTML = '';
-            let i = 0;
-            const cursor = document.createElement('span');
-            cursor.className = 'typewriter-cursor';
-            element.appendChild(cursor);
-
-            // A simple way to handle HTML tags during typing
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = text;
-            const allNodes = Array.from(tempDiv.childNodes);
-            let currentNodeIndex = 0;
-            let currentText = '';
-            let charIndex = 0;
+        generateIdeaBtn.addEventListener('click', async () => {
+            ideaLoader.style.display = 'block';
+            ideaResult.textContent = '';
+            const selectedSector = useCaseSector.options[useCaseSector.selectedIndex].text;
+            const prompt = `ช่วยคิดไอเดีย use case ของ IoT ที่น่าสนใจสำหรับภาคส่วน "${selectedSector}" มา 1 ไอเดียที่ไม่ซ้ำใคร พร้อมอธิบายหลักการทำงานและประโยชน์ที่คาดว่าจะได้รับแบบสั้นๆ`;
             
-            function type() {
-                if (currentNodeIndex < allNodes.length) {
-                    const currentNode = allNodes[currentNodeIndex];
-                    if (currentNode.nodeType === Node.TEXT_NODE) {
-                        currentText = currentNode.textContent;
-                        if (charIndex < currentText.length) {
-                            element.insertBefore(document.createTextNode(currentText[charIndex]), cursor);
-                            charIndex++;
-                        } else {
-                            charIndex = 0;
-                            currentNodeIndex++;
-                        }
-                    } else { // It's an element
-                        element.insertBefore(currentNode.cloneNode(true), cursor);
-                        currentNodeIndex++;
-                    }
-                } else {
-                     clearInterval(typewriterInterval);
-                     if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
-                }
-            }
-            typewriterInterval = setInterval(type, speed);
-        }
+            const result = await callGeminiAPI(prompt);
+            
+            ideaResult.textContent = result;
+            ideaLoader.style.display = 'none';
+        });
 
-        function animateCountUp(el) {
-            const target = parseInt(el.getAttribute('data-count'));
-            el.innerText = '0';
+        // --- 2. จัดการการสร้างโค้ด Arduino (Generate Code) ---
+        const generateCodeBtn = document.getElementById('generateCodeBtn');
+        const arduinoPrompt = document.getElementById('arduinoPrompt');
+        const codeLoader = document.getElementById('codeLoader');
+        const codeResultWrapper = document.getElementById('codeResultWrapper');
+        const codeResult = document.getElementById('codeResult');
+
+        generateCodeBtn.addEventListener('click', async () => {
+            if (arduinoPrompt.value.trim() === "") {
+                alert("กรุณาอธิบายโปรเจกต์ของคุณก่อน");
+                return;
+            }
+            codeLoader.style.display = 'block';
+            codeResultWrapper.style.display = 'none';
+            
+            const prompt = `สร้างโค้ด Arduino (C++) สำหรับโปรเจกต์ต่อไปนี้: "${arduinoPrompt.value}". โค้ดควรมี comment อธิบายส่วนสำคัญๆ และอยู่ในรูปแบบโค้ดเท่านั้น ไม่ต้องมีคำอธิบายอื่นๆ นอกบล็อกโค้ด`;
+
+            const rawResult = await callGeminiAPI(prompt);
+            
+            // ทำความสะอาดผลลัพธ์ ให้เหลือแต่โค้ดจริงๆ
+            const cleanedCode = rawResult.replace(/```(cpp|arduino)?/g, '').trim();
+            
+            codeResult.textContent = cleanedCode;
+            codeResultWrapper.style.display = 'block';
+            codeLoader.style.display = 'none';
+        });
+        
+        // --- 3. จัดการการอัปเดตเทรนด์ (Get Trends) ---
+        const getTrendsBtn = document.getElementById('getTrendsBtn');
+        const trendsLoader = document.getElementById('trendsLoader');
+        const trendsResult = document.getElementById('trendsResult');
+
+        getTrendsBtn.addEventListener('click', async () => {
+            trendsLoader.style.display = 'block';
+            trendsResult.textContent = '';
+            const prompt = "สรุปเทรนด์ IoT ล่าสุดที่สำคัญและน่าจับตามองที่สุดในปัจจุบัน มา 3-4 ข้อ โดยแต่ละข้อให้อธิบายสั้นๆ ว่าคืออะไรและมีความสำคัญอย่างไร";
+
+            const result = await callGeminiAPI(prompt);
+            
+            trendsResult.textContent = result;
+            trendsLoader.style.display = 'none';
+        });
+        
+        // --- 4. จัดการการถาม-ตอบ (Q&A) ---
+        const askQuestionBtn = document.getElementById('askQuestionBtn');
+        const questionInput = document.getElementById('questionInput');
+        const qaLoader = document.getElementById('qaLoader');
+        const qaResult = document.getElementById('qaResult');
+
+        askQuestionBtn.addEventListener('click', async () => {
+            const question = questionInput.value.trim();
+            if (question === "") {
+                alert("กรุณาพิมพ์คำถามของคุณ");
+                return;
+            }
+            qaLoader.style.display = 'block';
+            qaResult.textContent = '';
+            const prompt = `ในฐานะผู้เชี่ยวชาญด้าน IoT ช่วยตอบคำถามนี้ให้หน่อย: "${question}"`;
+            
+            const result = await callGeminiAPI(prompt);
+            
+            qaResult.textContent = result;
+            qaLoader.style.display = 'none';
+        });
+        
+        // =====================================================================
+        // ========== ส่วนของโค้ด AI ทั้งหมด สิ้นสุดที่นี่ ==========
+        // =====================================================================
+
+
+        // --- Helper functions ---
+        function animateCountUp(element) {
+            const target = +element.getAttribute('data-count');
             let current = 0;
-            const duration = 2000;
-            const stepTime = 20;
-            const increment = target / (duration / stepTime);
-            
+            const increment = target / 100;
             const interval = setInterval(() => {
                 current += increment;
                 if (current >= target) {
-                    el.innerText = target;
+                    element.innerText = target;
                     clearInterval(interval);
                 } else {
-                    el.innerText = Math.ceil(current);
+                    element.innerText = Math.ceil(current);
                 }
-            }, stepTime);
+            }, 20);
         }
-
-        function openModal(title, content) {
+        
+        function setupDeviceSearch() {
+            const searchInput = document.getElementById('device-search-input');
+            const dropdown = document.getElementById('device-dropdown');
             const modal = document.getElementById('device-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
 
-            modalTitle.textContent = title;
-            modalBody.innerHTML = content;
-
-            modal.classList.remove('hidden');
-            setTimeout(() => { modal.querySelector('.modal-content').classList.remove('scale-95'); }, 10);
-        }
-
-        function initDeviceExplorer() {
-            const searchInput = document.getElementById('device-search-input');
-            const dropdown = document.getElementById('device-dropdown');
-            
-            const filterDevices = () => {
-                const filter = searchInput.value.toUpperCase();
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase();
                 dropdown.innerHTML = '';
-                const filteredDevices = iotDevices.filter(d => d.name.toUpperCase().includes(filter));
-
-                if(filteredDevices.length > 0) {
-                    filteredDevices.forEach(device => {
-                        const item = document.createElement('a');
-                        item.href = '#';
-                        item.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100';
-                        item.textContent = device.name;
-                        item.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            searchInput.value = device.name;
-                            dropdown.classList.add('hidden');
-                            const content = `
-                                <div class="md:grid md:grid-cols-2 md:gap-6">
-                                    <img src="${device.image}" alt="${device.name}" class="w-full h-auto object-contain rounded-lg mb-4 md:mb-0">
-                                    <div>
-                                        <p class="text-gray-600 mb-4">${device.description}</p>
-                                        <a href="${device.datasheet}" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 action-button">
-                                            ดู Datasheet
-                                        </a>
-                                    </div>
-                                </div>`;
-                            openModal(device.name, content);
+                if (query) {
+                    const filteredDevices = iotDevices.filter(d => d.name.toLowerCase().includes(query));
+                    if(filteredDevices.length > 0) {
+                        filteredDevices.forEach(device => {
+                            const item = document.createElement('a');
+                            item.href = '#';
+                            item.className = 'block px-4 py-2 text-gray-800 hover:bg-blue-100';
+                            item.textContent = device.name;
+                            item.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                openDeviceModal(device);
+                                dropdown.classList.add('hidden');
+                            });
+                            dropdown.appendChild(item);
                         });
-                        dropdown.appendChild(item);
-                    });
-                     dropdown.classList.remove('hidden');
+                        dropdown.classList.remove('hidden');
+                    } else {
+                        dropdown.classList.add('hidden');
+                    }
                 } else {
                     dropdown.classList.add('hidden');
                 }
-            };
-            
-            searchInput.addEventListener('keyup', filterDevices);
-            searchInput.addEventListener('focus', filterDevices);
+            });
 
-            document.addEventListener('click', function(event) {
-                const container = document.getElementById('search-container');
-                if (!container.contains(event.target)) {
+            document.addEventListener('click', (e) => {
+                if (!document.getElementById('search-container').contains(e.target)) {
                     dropdown.classList.add('hidden');
                 }
             });
+            
+            closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.add('hidden');
+            });
+
+            function openDeviceModal(device) {
+                modalTitle.textContent = device.name;
+                modalBody.innerHTML = `
+                    <img src="${device.image}" alt="${device.name}" class="w-full h-auto max-h-64 object-contain rounded-lg mb-4 bg-gray-100">
+                    <p class="text-gray-700 mb-4">${device.description}</p>
+                    <a href="${device.datasheet}" target="_blank" rel="noopener noreferrer" class="inline-block text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center action-button">
+                        ดู Datasheet
+                    </a>
+                `;
+                modal.classList.remove('hidden');
+            }
         }
         
-        const modal = document.getElementById('device-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const closeModal = () => {
-             modal.querySelector('.modal-content').classList.add('scale-95');
-             setTimeout(() => { modal.classList.add('hidden'); }, 300);
-        };
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
-
-
-        document.getElementById('generateIdeaBtn').addEventListener('click', () => {
-            const sector = document.getElementById('useCaseSector').value;
-            const prompt = `Generate a creative, specific, and practical new use case for IoT in the '${sector}' sector in Thailand. Respond in Thai using markdown format. Use a main heading for the idea title, and then use subheadings for '### ปัญหา (Problem)', '### แนวทางแก้ไขและอุปกรณ์ (Solution & Devices)', and '### ประโยชน์ (Benefit)'.`;
-            callGeminiAPI(prompt, document.getElementById('ideaLoader'), document.getElementById('ideaResult'));
-        });
-
-        document.getElementById('generateCodeBtn').addEventListener('click', () => {
-            const userPrompt = document.getElementById('arduinoPrompt').value;
-            if (!userPrompt.trim()) { alert('กรุณาอธิบายโปรเจกต์ที่คุณต้องการ'); return; }
-            const prompt = `You are an expert Arduino programmer. Based on the following user request, generate a complete, well-commented, and ready-to-use Arduino C++ code (.ino). The code should be enclosed in a single markdown code block. User request in Thai: '${userPrompt}'`;
-            callGeminiAPI(prompt, document.getElementById('codeLoader'), document.getElementById('codeResult'), true, document.getElementById('codeResultWrapper'));
-        });
-
-        document.getElementById('copyCodeBtn').addEventListener('click', () => {
-            const codeToCopy = document.getElementById('codeResult').innerText;
+        // --- Copy Code Button Functionality ---
+        const copyCodeBtn = document.getElementById('copyCodeBtn');
+        copyCodeBtn.addEventListener('click', () => {
+            const codeToCopy = document.getElementById('codeResult').textContent;
             navigator.clipboard.writeText(codeToCopy).then(() => {
-                document.getElementById('copyBtnText').innerText = 'คัดลอกแล้ว!';
-                setTimeout(() => { document.getElementById('copyBtnText').innerText = 'คัดลอกโค้ด'; }, 2000);
-            }).catch(err => { console.error('Failed to copy text: ', err); });
+                const copyBtnText = document.getElementById('copyBtnText');
+                copyBtnText.textContent = 'คัดลอกแล้ว!';
+                setTimeout(() => {
+                    copyBtnText.textContent = 'คัดลอกโค้ด';
+                }, 2000);
+            }).catch(err => {
+                console.error('ไม่สามารถคัดลอกโค้ดได้: ', err);
+            });
         });
-
-        document.getElementById('askQuestionBtn').addEventListener('click', () => {
-            const question = document.getElementById('questionInput').value;
-            if (!question.trim()) { document.getElementById('qaResult').textContent = 'กรุณาป้อนคำถามของคุณ'; return; }
-            const prompt = `As an IoT expert, answer this question clearly and concisely in Thai: "${question}"`;
-            callGeminiAPI(prompt, document.getElementById('qaLoader'), document.getElementById('qaResult'));
-        });
-
-        document.getElementById('getTrendsBtn').addEventListener('click', () => {
-            const prompt = `Summarize 2-3 of the most important and recent trends in the world of Internet of Things as of August 2025. Respond in Thai. For each trend, use a bolded title (e.g., **1. Trend Name**) and then a short paragraph description.`;
-            callGeminiAPI(prompt, document.getElementById('trendsLoader'), document.getElementById('trendsResult'));
-        });
-        
-        // Set initial texts
-        document.getElementById('ideaResult').innerHTML = '🤖 <strong>พร้อมสร้างสรรค์!</strong><br>เลือกหมวดหมู่แล้วกดปุ่ม "✨ สร้างไอเดีย" เพื่อให้ AI ช่วยคิดครับ';
-        document.getElementById('qaResult').innerHTML = '🤔 <strong>มีคำถามใช่ไหม?</strong><br>พิมพ์ข้อสงสัยเกี่ยวกับ IoT ของคุณแล้วให้ AI ช่วยตอบได้เลย';
-        document.getElementById('trendsResult').innerHTML = '📰 <strong>อยากรู้เทรนด์ล่าสุด?</strong><br>กดปุ่ม "🚀 อัปเดตเทรนด์" เพื่อดูความเคลื่อนไหวในโลก IoT';
     </script>
+
 </body>
 </html>
